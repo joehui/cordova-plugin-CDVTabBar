@@ -42,6 +42,9 @@
                if (!options) options = {};
                exec(null, null, "TabBar", "updateItem", [name, options]);
                },
+               removeItem: function(name) {
+               exec(null, null, "TabBar", "removeItem", [name]);
+               },
                createItem: function(name, label, image, options) {
                tag++;
                if (options && 'onSelect' in options && typeof(options['onSelect']) == 'function') {
@@ -212,6 +215,13 @@ TabBar.prototype.showItems = function() {
 TabBar.prototype.updateItem = function(name, options) {
     if (!options) options = {};
     cordova.exec("TabBar.updateItem", name, options);
+};
+
+/**
+ *
+ */
+TabBar.prototype.removeItem = function(name) {
+    cordova.exec("TabBar.removeItem", name);
 };
 
 cordova.addConstructor(function()
