@@ -386,6 +386,18 @@
     }
 }
 
+/**
+ *
+ */
+- (void)removeItem:(CDVInvokedUrlCommand*)command
+{
+    if (!tabBar)
+        [self create:nil];
+  
+    NSString *name      = [command argumentAtIndex:0];
+
+    [tabBarItems removeObjectForKey:name];
+}
 
 /**
  * Show previously created items on the tab bar
