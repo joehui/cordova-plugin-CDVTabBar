@@ -33,6 +33,7 @@
 - (void)showItems:(CDVInvokedUrlCommand*)command;
 - (void)createItem:(CDVInvokedUrlCommand*)command;
 - (void)updateItem:(CDVInvokedUrlCommand*)command;
+- (void)removeItem:(CDVInvokedUrlCommand*)command;
 - (void)selectItem:(CDVInvokedUrlCommand*)command;
 
 @end
