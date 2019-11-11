@@ -103,8 +103,8 @@
     right = left + [UIScreen mainScreen].bounds.size.width;
     
     if (@available(iOS 11.0, *)) {
-        top = [UIScreen mainScreen].bounds.origin.y + [[self webView] superview].safeAreaInsets.top;
-        if (isPortrait) bottom = top + [UIScreen mainScreen].bounds.size.height - [[self webView] superview].safeAreaInsets.top;
+        top = [UIScreen mainScreen].bounds.origin.y;
+        if (isPortrait) bottom = top + [UIScreen mainScreen].bounds.size.height;
         else bottom = top + [UIScreen mainScreen].bounds.size.height;
     } else {
         top = [UIScreen mainScreen].bounds.origin.y + 20.0f;
@@ -120,7 +120,7 @@
     if(tabBarShown)
     {
         if(tabBarAtBottom)
-        bottom -= tabBarHeight;
+        bottom -= ( tabBarHeight + [[self webView] superview].safeAreaInsets.bottom );
         else
         top += tabBarHeight;
     }
@@ -128,11 +128,13 @@
     CGRect webViewFrame;
     
     if (@available(iOS 11.0, *)) {
-        webViewFrame = CGRectMake(left, top, right - left, bottom - top - [[self webView] superview].safeAreaInsets.bottom);
+        webViewFrame = CGRectMake(left, top, right - left, bottom - top);
     } else {
         webViewFrame = CGRectMake(left, top, right - left, bottom - top);
     }
     
+    // set the webview's parent background to dark blue
+    self.webView.superview.backgroundColor = [UIColor colorWithRed:29.0/255.0 green:42.0/255.0 blue:59.0/255.0 alpha:1.0];
     [self.webView setFrame:webViewFrame];
     
     // -----------------------------------------------------------------------------
@@ -147,7 +149,7 @@
     if(tabBarShown)
     {
         if(tabBarAtBottom)
-        [tabBar setFrame:CGRectMake(left, [UIScreen mainScreen].bounds.origin.y + [UIScreen mainScreen].bounds.size.height - tabBarHeight - iphonexfix, right - left, tabBarHeight)];
+        [tabBar setFrame:CGRectMake(left, [UIScreen mainScreen].bounds.origin.y + [UIScreen mainScreen].bounds.size.height - tabBarHeight - iphonexfix, right - left, tabBarHeight + iphonexfix )];
         
         else
         [tabBar setFrame:CGRectMake(left, [UIScreen mainScreen].bounds.origin.y, right - left, tabBarHeight)];
