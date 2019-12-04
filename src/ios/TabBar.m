@@ -41,7 +41,7 @@
      object:[UIDevice currentDevice]];
     
     navBarHeight = 44.0f;
-    tabBarHeight = 45.0f;
+    tabBarHeight = 48.0f;
     tabBarAtBottom = true;
     
 }
@@ -120,7 +120,7 @@
     if(tabBarShown)
     {
         if(tabBarAtBottom)
-        bottom -= ( tabBarHeight + [[self webView] superview].safeAreaInsets.bottom );
+        bottom -= ( tabBarHeight + [[self webView] superview].safeAreaInsets.bottom - 10.0f);
         else
         top += tabBarHeight;
     }
@@ -141,7 +141,8 @@
     CGFloat iphonexfix = 0.0f;
     // NOTE: Following part again for tab bar plugin only
     if (@available(iOS 11.0, *)) {
-        if ([[self webView] superview].safeAreaInsets.bottom > 0) iphonexfix = 35.0f;
+        if ([[self webView] superview].
+            .bottom > 0) iphonexfix = 35.0f;
         else iphonexfix = 0.0f;
     }
     
