@@ -41,7 +41,7 @@
      object:[UIDevice currentDevice]];
     
     navBarHeight = 44.0f;
-    tabBarHeight = 49.0f;
+    tabBarHeight = 45.0f;
     tabBarAtBottom = true;
     
 }
