@@ -119,8 +119,12 @@
     
     if(tabBarShown)
     {
-        if(tabBarAtBottom)
-        bottom -= ( tabBarHeight + [[self webView] superview].safeAreaInsets.bottom - 10.0f);
+        if(tabBarAtBottom) {
+            if (isPortrait)
+                bottom -= ( tabBarHeight + [[self webView] superview].safeAreaInsets.bottom - 10.0f);
+            else
+                bottom -= ( tabBarHeight + [[self webView] superview].safeAreaInsets.bottom - 25.0f);
+        }
         else
         top += tabBarHeight;
     }
@@ -141,9 +145,14 @@
     CGFloat iphonexfix = 0.0f;
     // NOTE: Following part again for tab bar plugin only
     if (@available(iOS 11.0, *)) {
-        if ([[self webView] superview].
-            .bottom > 0) iphonexfix = 35.0f;
-        else iphonexfix = 0.0f;
+        if ([[self webView] superview].safeAreaInsets.bottom > 0) {
+            if (isPortrait)
+                iphonexfix = 25.0f;
+            else
+                iphonexfix = 10.0f;
+        }
+        else
+            iphonexfix = 0.0f;
     }
     
     
